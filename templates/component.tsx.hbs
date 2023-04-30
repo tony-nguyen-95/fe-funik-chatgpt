@@ -1,0 +1,9 @@
+import React from 'react';
+import './{{prefixClassName}}.style.scss';
+import { I{{name}}Props } from './{{prefixClassName}}.type'
+
+const prefixClassName = '{{prefixClassName}}';
+
+export const {{name}} :React.FC<I{{name}}Props> = (props) => {
+    return <div className={prefixClassName}>{{name}}</div>;
+};

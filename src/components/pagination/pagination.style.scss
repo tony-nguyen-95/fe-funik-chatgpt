@@ -1,0 +1,21 @@
+.pagination {
+  justify-content: center;
+  overflow-x: scroll;
+
+  * {
+    color: var(--primary);
+  }
+
+  .page-item:first-child .page-link,
+  .page-item:last-child .page-link {
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span:first-child {
+      font-size: 1.5rem;
+      padding-bottom: 2px;
+    }
+  }
+}
