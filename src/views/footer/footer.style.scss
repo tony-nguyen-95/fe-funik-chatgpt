@@ -24,7 +24,7 @@
       z-index: 2;
     }
 
-    & > a {
+    &>a {
       @media screen and (min-width: 992px) {
         width: 15% !important;
       }
@@ -78,7 +78,7 @@
     border: 1px solid white;
     text-align: center;
     padding-top: 6px;
-    background: var(--primary);
+    // background: var(--primary);
     cursor: pointer;
   }
 }
