@@ -25,7 +25,7 @@ export const Home: React.FC<IHomeProps> = observer((props) => {
 
   return (
     <div className="flex justify-center items-center">
-      <h1 className="text-black text-lg">HANNAH'S ASSISTANT</h1>
+      <h1 className="text-black text-lg">HANNAH&apos;S ASSISTANT</h1>
     </div>
   );
 });

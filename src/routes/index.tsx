@@ -4,6 +4,7 @@ import { observer } from 'mobx-react';
 import { CorePageStore } from '../stores';
 import { Home } from '../pages';
 import { useTranslation, withTranslation } from 'react-i18next';
+// import { useLocation } from 'react-router-dom';
 
 const prefixClassName = 'home-page';
 
@@ -23,7 +24,6 @@ const MainRoute: React.FC<IMainRouteProps> = observer((props) => {
 
   return (
     <div className={prefixClassName}>
-      {/* {pages === 'HOME' && <Home />} */}
       <Home />
     </div>
   );
