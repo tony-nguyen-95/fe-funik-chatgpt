@@ -1,5 +1,6 @@
 @import url(./_mixins.scss);
 @import url(./_variables.scss);
+@import url(./_tailwind.scss);
 
 body {
   margin: 0;
@@ -16,23 +17,6 @@ body {
   box-sizing: border-box;
   font-size: 1rem;
   color: white;
-}
-
-html {
-  // background: var(--primary);
-}
-
-.btn {
-  // --bs-btn-font-weight: 600 !important;
-}
-
-.navbar {
-  // --bs-navbar-padding-y: 0 !important;
-}
-
-textarea:focus,
-input:focus {
-  outline: none;
 }
 
 ::-webkit-scrollbar {

@@ -24,8 +24,8 @@ export const Home: React.FC<IHomeProps> = observer((props) => {
   }, []);
 
   return (
-    <div style={{ position: 'relative' }}>
-      HOME PAGE
+    <div className="flex justify-center items-center">
+      <h1 className="text-black text-lg">HANNAH'S ASSISTANT</h1>
     </div>
   );
 });
