@@ -7,7 +7,14 @@
     "plugin:react-hooks/recommended",
     "plugin:jest/recommended"
   ],
-  "plugins": ["eslint-plugin-react", "@typescript-eslint", "prettier", "react", "jest", "unused-imports"],
+  "plugins": [
+    "eslint-plugin-react",
+    "@typescript-eslint",
+    "prettier",
+    "react",
+    "jest",
+    "unused-imports"
+  ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -15,18 +22,43 @@
   },
   "ignorePatterns": "@types",
   "rules": {
-    "prettier/prettier": ["error"],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "no-labels": "warn",
     "no-continue": "off",
     "no-restricted-syntax": "warn",
     "react-hooks/exhaustive-deps": "warn",
     "react-hooks/rules-of-hooks": "error",
-    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
-    "react/jsx-indent-props": ["warn", 2],
-    "react/jsx-indent": ["warn", 2],
-    "react/jsx-one-expression-per-line": [0],
-    "react/prefer-stateless-function": [1],
-    "react/static-property-placement": [1, "property assignment"],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".tsx"
+        ]
+      }
+    ],
+    "react/jsx-indent-props": [
+      "warn",
+      2
+    ],
+    "react/jsx-indent": [
+      "warn",
+      2
+    ],
+    "react/jsx-one-expression-per-line": [
+      0
+    ],
+    "react/prefer-stateless-function": [
+      1
+    ],
+    "react/static-property-placement": [
+      1,
+      "property assignment"
+    ],
     "react/function-component-definition": [
       "error",
       {
@@ -51,7 +83,9 @@
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": "warn",
     "no-shadow": "off",
-    "@typescript-eslint/no-shadow": ["warn"],
+    "@typescript-eslint/no-shadow": [
+      "warn"
+    ],
     "class-methods-use-this": "off",
     "no-undef": "off",
     "import/prefer-default-export": "off",
@@ -71,24 +105,53 @@
     "jsx-a11y/label-has-associated-control": "off",
     "camelcase": "warn",
     "import/order": "off",
-    "no-restricted-globals": ["error", "event", "fdescribe"],
-    "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }],
-    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-restricted-globals": [
+      "error",
+      "event",
+      "fdescribe"
+    ],
+    "no-unused-expressions": [
+      "error",
+      {
+        "allowShortCircuit": true,
+        "allowTernary": true
+      }
+    ],
+    "no-plusplus": [
+      "error",
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ],
     "jsx-a11y/no-noninteractive-element-interactions": "off",
     "no-throw-literal": "off",
     "jsx-a11y/anchor-is-valid": [
       "warn",
       {
-        "aspects": ["noHref"]
+        "aspects": [
+          "noHref"
+        ]
       }
     ],
-    "no-console": ["warn", { "allow": ["info"] }],
+    "no-console": [
+      "warn",
+      {
+        "allow": [
+          "info"
+        ]
+      }
+    ],
     "@typescript-eslint/no-non-null-assertion": "warn"
   },
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
       }
     }
   },
