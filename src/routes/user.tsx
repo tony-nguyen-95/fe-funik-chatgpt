@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
-import { ILoginRouteProps } from './login.type';
 import { observer } from 'mobx-react';
 import { CorePageStore } from '../stores';
-import { Login } from '../pages';
+import { User } from '../pages';
 import { useTranslation, withTranslation } from 'react-i18next';
 
 const prefixClassName = 'login-page';
 
-const LoginRoute: React.FC<ILoginRouteProps> = observer((props) => {
-  // const pages = CorePageStore.pageSelector();
+const UserRoute: React.FC = observer((props) => {
   const lang = CorePageStore.languageSelector();
 
   const { i18n } = useTranslation();
@@ -23,9 +21,9 @@ const LoginRoute: React.FC<ILoginRouteProps> = observer((props) => {
 
   return (
     <div className={prefixClassName}>
-      <Login />
+      <User />
     </div>
   );
 });
 
-export default withTranslation()(LoginRoute);
+export default withTranslation()(UserRoute);
