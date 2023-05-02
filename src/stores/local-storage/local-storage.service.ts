@@ -1,5 +1,5 @@
 import SecureLs from 'secure-ls';
-import { updateAccessTokenAction } from '../store-authentication/action';
+// import { updateAccessTokenAction } from '../store-authentication/action';
 
 class LocalStorageServiceFactory {
   private static _instance: LocalStorageServiceFactory;
@@ -26,7 +26,7 @@ class LocalStorageServiceFactory {
     try {
       return this._ls.get(key) as T;
     } catch (error) {
-      updateAccessTokenAction(undefined);
+      //   updateAccessTokenAction(undefined);
     }
   };
 

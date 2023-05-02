@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
-import { IMainRouteProps } from './index.type';
+import { ILoginRouteProps } from './login.type';
 import { observer } from 'mobx-react';
 import { CorePageStore } from '../stores';
-import { Home } from '../pages';
+import { Login } from '../pages';
 import { useTranslation, withTranslation } from 'react-i18next';
-// import { useLocation } from 'react-router-dom';
 
-const prefixClassName = 'home-page';
+const prefixClassName = 'login-page';
 
-const MainRoute: React.FC<IMainRouteProps> = observer((props) => {
+const LoginRoute: React.FC<ILoginRouteProps> = observer((props) => {
   // const pages = CorePageStore.pageSelector();
   const lang = CorePageStore.languageSelector();
 
@@ -24,9 +23,9 @@ const MainRoute: React.FC<IMainRouteProps> = observer((props) => {
 
   return (
     <div className={prefixClassName}>
-      <Home />
+      <Login />
     </div>
   );
 });
 
-export default withTranslation()(MainRoute);
+export default withTranslation()(LoginRoute);

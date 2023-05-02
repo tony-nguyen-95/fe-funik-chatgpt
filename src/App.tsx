@@ -1,13 +1,16 @@
 /* eslint-disable react/react-in-jsx-scope */
 import './App.scss';
-import { BrowserRouter, Route } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MainRoute from './routes';
+import LoginRoute from './routes/login';
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Route exact path="" render={(props) => <MainRoute {...props} />} />
+      <Routes>
+        <Route path="/login" element={<LoginRoute />} />
+        <Route path="/" element={<MainRoute />} />
+      </Routes>
     </BrowserRouter>
   );
 };

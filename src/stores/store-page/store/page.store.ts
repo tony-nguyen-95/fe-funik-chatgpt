@@ -4,7 +4,6 @@ import { IPageStore } from './page.type';
 
 const initStore: IPageStore = {
   page: undefined,
-  popUpType: undefined,
   language: LocalStorageService.getItem('lang') || 'vi',
 };
 

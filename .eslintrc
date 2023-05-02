@@ -15,13 +15,23 @@
   },
   "ignorePatterns": "@types",
   "rules": {
-    "prettier/prettier": ["error"],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "no-labels": "warn",
     "no-continue": "off",
     "no-restricted-syntax": "warn",
     "react-hooks/exhaustive-deps": "warn",
     "react-hooks/rules-of-hooks": "error",
-    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".tsx"]
+      }
+    ],
     "react/jsx-indent-props": ["warn", 2],
     "react/jsx-indent": ["warn", 2],
     "react/jsx-one-expression-per-line": [0],
@@ -72,8 +82,19 @@
     "camelcase": "warn",
     "import/order": "off",
     "no-restricted-globals": ["error", "event", "fdescribe"],
-    "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }],
-    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-unused-expressions": [
+      "error",
+      {
+        "allowShortCircuit": true,
+        "allowTernary": true
+      }
+    ],
+    "no-plusplus": [
+      "error",
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ],
     "jsx-a11y/no-noninteractive-element-interactions": "off",
     "no-throw-literal": "off",
     "jsx-a11y/anchor-is-valid": [
@@ -82,7 +103,12 @@
         "aspects": ["noHref"]
       }
     ],
-    "no-console": ["warn", { "allow": ["info"] }],
+    "no-console": [
+      "warn",
+      {
+        "allow": ["info"]
+      }
+    ],
     "@typescript-eslint/no-non-null-assertion": "warn"
   },
   "settings": {

@@ -5,7 +5,7 @@
   z-index: 1000;
 
   #dropdown-basic-button-white {
-    color: var(--primary);
+    // color: var(--primary);
     padding-left: 0;
   }
 
@@ -82,7 +82,7 @@
   .navbar-collapse {
     height: 100vh;
     padding: 2rem;
-    background: var(--primary);
+    // background: var(--primary);
 
     @media screen and (min-width: 992px) {
       height: auto;
@@ -196,6 +196,7 @@
 
   .response-desktop-nav {
     background: white;
+
     a {
       color: gray !important;
     }
