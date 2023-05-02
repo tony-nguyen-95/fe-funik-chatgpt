@@ -1,1 +1,1 @@
-export interface IMainRouteProps { }
+export interface IMainRouteProps {}

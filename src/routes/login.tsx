@@ -8,24 +8,24 @@ import { useTranslation, withTranslation } from 'react-i18next';
 const prefixClassName = 'login-page';
 
 const LoginRoute: React.FC<ILoginRouteProps> = observer((props) => {
-    // const pages = CorePageStore.pageSelector();
-    const lang = CorePageStore.languageSelector();
+  // const pages = CorePageStore.pageSelector();
+  const lang = CorePageStore.languageSelector();
 
-    const { i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
-    useEffect(() => {
-        if (lang === 'en') {
-            i18n.changeLanguage('en');
-        } else {
-            i18n.changeLanguage('vi');
-        }
-    }, [i18n, lang]);
+  useEffect(() => {
+    if (lang === 'en') {
+      i18n.changeLanguage('en');
+    } else {
+      i18n.changeLanguage('vi');
+    }
+  }, [i18n, lang]);
 
-    return (
-        <div className={prefixClassName}>
-            <Login />
-        </div>
-    );
+  return (
+    <div className={prefixClassName}>
+      <Login />
+    </div>
+  );
 });
 
 export default withTranslation()(LoginRoute);

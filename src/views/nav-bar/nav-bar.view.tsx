@@ -8,8 +8,5 @@ const prefixClassName = 'navbar-view';
 export const NavBar: React.FC<INavBarProps> = observer((props) => {
   const { t } = useTranslation();
 
-  return (
-    <div className={prefixClassName}>
-    </div>
-  );
+  return <div className={prefixClassName}></div>;
 });

@@ -1,9 +1,6 @@
-export type TPage =
-    | undefined
-    | 'HOME'
-    | 'LOGIN';
+export type TPage = undefined | 'HOME' | 'LOGIN';
 
 export interface IPageStore {
-    page: TPage;
-    language: 'vi' | 'en';
+  page: TPage;
+  language: 'vi' | 'en';
 }

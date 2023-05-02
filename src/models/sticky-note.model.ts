@@ -1,5 +1,5 @@
 export interface IStickyNote {
-    hannahStudentId: string;
-    stickyNoteId: string;
-    content: string | null;
+  hannahStudentId: string;
+  stickyNoteId: string;
+  content: string | null;
 }
