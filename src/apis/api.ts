@@ -30,10 +30,3 @@ const setApiAccessToken = (accessToken: string | undefined) => {
 };
 
 export { API, ThrowApiError };
-
-// const setApiAccessToken = (accessToken: string | undefined) => {
-//   if (accessToken) API.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-//   else delete API.defaults.headers.common.Authorization;
-// };
-
-// export { API, ThrowApiError, setApiAccessToken };

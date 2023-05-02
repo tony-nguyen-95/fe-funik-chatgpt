@@ -3,13 +3,39 @@ import './login.style.scss';
 import { IloginProps } from './login.type';
 import LoginBackground from '../../assets/login-background.png';
 import HannahsAssistantLogo from "../../assets/hannah's-assistant-logo.png";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { observer } from 'mobx-react';
+import * as yup from 'yup';
 
 import { IoEyeOff, IoEye } from 'react-icons/io5';
+import { ILoginForm } from '../../models';
+import { CoreAuthenticationStore } from '../../stores';
 
 const prefixClassName = 'login';
 
-export const Login: React.FC<IloginProps> = (props) => {
+const LoginSchema = yup.object().shape({
+  username: yup.string().required('Username không được bỏ trống!'),
+  password: yup.string().required('Password không được bỏ trống!').min(6, 'Password ít nhất 6 kí tự!'),
+});
+
+export const Login: React.FC<IloginProps> = observer((props) => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ILoginForm>({
+    mode: 'onSubmit',
+    resolver: yupResolver(LoginSchema),
+  });
+
+  const onSubmit = (data: ILoginForm) => {
+    CoreAuthenticationStore.loginAction(data);
+  };
+
+  const onError = (errors: any, e: any) => console.log(errors, e);
 
   return (
     <div
@@ -19,30 +45,28 @@ export const Login: React.FC<IloginProps> = (props) => {
     >
       <div className="flex flex-col justify-center items-center w-[90vw] md:w-[30rem] bg-[#e4f2fc] px-3 md:px-10 py-10 rounded-lg drop-shadow-lg">
         <img src={HannahsAssistantLogo} alt="Hannah's Assistant Logo" className="w-2/3 md:w-1/2" />
-        <form
-          method="post"
-          className="w-full mt-10"
-          onSubmit={(e) => {
-            e.preventDefault();
-
-            return false;
-          }}
-        >
-          <input
-            type="text"
-            name="username"
-            id="username"
-            placeholder="Email Address"
-            className="shadow-lg p-4 w-full rounded-lg mb-5"
-          />
-          <div className="relative">
+        <form method="post" className="w-full mt-10" onSubmit={handleSubmit(onSubmit, onError)}>
+          <div className="relative mb-5">
+            <input
+              type="text"
+              name="username"
+              id="username"
+              placeholder="Username"
+              className="shadow-lg p-4 w-full rounded-lg"
+              {...(register('username') as any)}
+            />
+            {errors.username && <label className="text-red-500">{errors.username.message}</label>}
+          </div>
+          <div className="relative mb-5">
             <input
               type={showPassword ? 'text' : 'password'}
               name="password"
               id="password"
               placeholder="Password"
-              className="shadow-lg p-4 w-full rounded-lg mb-5 pr-12"
+              className="shadow-lg p-4 w-full rounded-lg mb-3 pr-12"
+              {...(register('password') as any)}
             />
+            {errors.password && <label className="text-red-500 mb-5">{errors.password.message}</label>}
             <div
               className="absolute top-0 right-0 mt-4 mr-4 text-gray-700 hover:text-gray-900 cursor-pointer"
               onClick={() => setShowPassword(!showPassword)}
@@ -83,4 +107,4 @@ export const Login: React.FC<IloginProps> = (props) => {
       </div>
     </div>
   );
-};
+});
