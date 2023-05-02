@@ -3,5 +3,10 @@ export interface IUser {
   userName: string | null;
   password: string | null;
   funixId: string | null;
-  funixMail: string | null;
+  funixEmail: string | null;
+  isDeleted?: boolean;
+  loginDate?: string;
+  createdDate?: string;
+  updatedDate?: string;
+  hannah: boolean | null;
 }
