@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
 import { IUserTableProps } from './user-table.type';
 import { IUser } from '../../models';
 
@@ -60,11 +62,11 @@ const TEMP_DATA: IUser[] = [
     hannah: null,
   },
 ];
-const limit = 10;
 
 export const UserTable: React.FC<IUserTableProps> = (props) => {
   const [popUp, setPopUp] = useState(false);
   const [popUpDelete, setPopUpDelete] = useState(false);
+  const [popUpAdd, setPopUpAdd] = useState(false);
   const [choosenUser, setChoosenUser] = useState<IUser | null>(null);
 
   return (
@@ -76,6 +78,7 @@ export const UserTable: React.FC<IUserTableProps> = (props) => {
               <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                 <th className="py-3 px-6 text-center rounded-tl-lg">STT</th>
                 <th className="py-3 px-6 text-center">Username</th>
+                <th className="py-3 px-6 text-center">Funix ID</th>
                 <th className="py-3 px-6 text-center">Funix Email</th>
                 <th className="py-3 px-6 text-center rounded-tr-lg">Actions</th>
               </tr>
@@ -88,7 +91,8 @@ export const UserTable: React.FC<IUserTableProps> = (props) => {
                 >
                   <td className="text-center p-2">{index + 1}</td>
                   <td className="p-2">{user.userName}</td>
-                  <td className="p-2">{user.funixEmail}</td>
+                  <td className="p-2">{user.funixId || <span className="text-slate-300">chưa cập nhật</span>}</td>
+                  <td className="p-2">{user.funixEmail || <span className="text-slate-300">chưa cập nhật</span>}</td>
                   <td className="text-center p-2">
                     <button
                       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -111,6 +115,22 @@ export const UserTable: React.FC<IUserTableProps> = (props) => {
                   </td>
                 </tr>
               ))}
+              <tr className="border-gray-200 hover:bg-gray-100 text-gray-600 text-sm leading-normal border-t-2">
+                <td className="text-center p-2" />
+                <td className="p-2" />
+                <td className="p-2" />
+                <td className="p-2" />
+                <td className="text-center p-2">
+                  <button
+                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={() => {
+                      setPopUpAdd(true);
+                    }}
+                  >
+                    Add new user
+                  </button>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -124,6 +144,26 @@ export const UserTable: React.FC<IUserTableProps> = (props) => {
             onSubmit={(e) => {
               e.preventDefault();
 
+              const data = new FormData(e.target as HTMLFormElement);
+              const userName = data.get('userName') as string;
+              const password = data.get('password') as string;
+              const funixId = data.get('funixId') as string;
+              const funixEmail = data.get('funixEmail') as string;
+
+              if (choosenUser) {
+                const index = TEMP_DATA.findIndex((user) => user.userId === choosenUser.userId);
+
+                if (index !== -1) {
+                  TEMP_DATA[index] = {
+                    ...choosenUser,
+                    userName,
+                    password,
+                    funixId,
+                    funixEmail,
+                  };
+                }
+              }
+
               setPopUp(false);
               setChoosenUser(null);
               return false;
@@ -136,7 +176,6 @@ export const UserTable: React.FC<IUserTableProps> = (props) => {
               id="userName"
               name="userName"
               className="w-full border-2 border-gray-400 rounded-md p-2"
-              value={choosenUser?.userName || ''}
             />
             <br />
 
@@ -153,13 +192,7 @@ export const UserTable: React.FC<IUserTableProps> = (props) => {
 
             <label htmlFor="funixId">Funix ID:</label>
             <br />
-            <input
-              type="text"
-              id="funixId"
-              name="funixId"
-              className="w-full border-2 border-gray-400 rounded-md p-2"
-              value={choosenUser?.funixId || ''}
-            />
+            <input type="text" id="funixId" name="funixId" className="w-full border-2 border-gray-400 rounded-md p-2" />
             <br />
             <label htmlFor="funixEmail">Funix Email:</label>
             <br />
@@ -168,7 +201,6 @@ export const UserTable: React.FC<IUserTableProps> = (props) => {
               id="funixEmail"
               name="funixEmail"
               className="w-full border-2 border-gray-400 rounded-md p-2"
-              value={choosenUser?.funixEmail || ''}
             />
             <br />
 
@@ -226,6 +258,116 @@ export const UserTable: React.FC<IUserTableProps> = (props) => {
               Delete
             </button>
           </div>
+        </div>
+      </Popup>
+      <Popup popUp={popUpAdd}>
+        <div className="w-[30rem] min-h-96 bg-white rounded-md shadow-2xl py-5 px-2">
+          <h2 className="font-sans text-xl text-center p-2 font-bold">Thêm người dùng</h2>
+          <form
+            method="POST"
+            className="w-full p-3"
+            onSubmit={(e) => {
+              e.preventDefault();
+
+              const data = new FormData(e.target as HTMLFormElement);
+              const userName = data.get('userName') as string;
+              const password = data.get('password') as string;
+              const funixId = data.get('funixId') as string;
+              const funixEmail = data.get('funixEmail') as string;
+
+              if (funixEmail) {
+                const index = TEMP_DATA.findIndex((user) => user.funixEmail === funixEmail);
+                if (index !== -1) {
+                  alert('Email đã tồn tại!');
+                  return false;
+                }
+              }
+
+              if (funixId) {
+                const index = TEMP_DATA.findIndex((user) => user.funixId === funixId);
+
+                if (index !== -1) {
+                  alert('Funix ID đã tồn tại!');
+                  return false;
+                }
+              }
+
+              if (!userName || !password) {
+                alert('Thiếu userName hoặc password!');
+                return false;
+              }
+
+              TEMP_DATA.push({
+                userId: uuidv4(),
+                userName,
+                password,
+                funixId,
+                funixEmail,
+                isDeleted: false,
+                loginDate: new Date().toLocaleString(),
+                createdDate: new Date().toLocaleString(),
+                updatedDate: new Date().toLocaleString(),
+                hannah: null,
+              });
+
+              setPopUpAdd(false);
+              return false;
+            }}
+          >
+            <label htmlFor="userName">UserName:</label>
+            <br />
+            <input
+              type="text"
+              id="userName"
+              name="userName"
+              className="w-full border-2 border-gray-400 rounded-md p-2"
+            />
+            <br />
+
+            <label htmlFor="password">Password:</label>
+            <br />
+            <input
+              type="password"
+              id="password"
+              name="password"
+              className="w-full border-2 border-gray-400 rounded-md p-2"
+            />
+            <br />
+            <br />
+
+            <label htmlFor="funixId">Funix ID:</label>
+            <br />
+            <input type="text" id="funixId" name="funixId" className="w-full border-2 border-gray-400 rounded-md p-2" />
+            <br />
+            <label htmlFor="funixEmail">Funix Email:</label>
+            <br />
+            <input
+              type="text"
+              id="funixEmail"
+              name="funixEmail"
+              className="w-full border-2 border-gray-400 rounded-md p-2"
+            />
+            <br />
+
+            <div className="float-right mt-5">
+              <button
+                type="button"
+                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-3"
+                onClick={() => {
+                  setPopUpAdd(false);
+                  setChoosenUser(null);
+                }}
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3 ml-2"
+              >
+                Add
+              </button>
+            </div>
+          </form>
         </div>
       </Popup>
     </>
