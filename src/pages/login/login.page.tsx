@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './login.style.scss';
 import { IloginProps } from './login.type';
 import LoginBackground from '../../assets/login-background.png';
@@ -11,6 +11,8 @@ import * as yup from 'yup';
 import { IoEyeOff, IoEye } from 'react-icons/io5';
 import { ILoginForm } from '../../models';
 import { CoreAuthenticationStore } from '../../stores';
+import { useHistory } from 'react-router-dom';
+import { LoadingModal } from '../../components';
 
 const prefixClassName = 'login';
 
@@ -20,6 +22,14 @@ const LoginSchema = yup.object().shape({
 });
 
 export const Login: React.FC<IloginProps> = observer((props) => {
+  const history = useHistory();
+
+  const isLoginSuccess = CoreAuthenticationStore.isLoginSuccessSelector();
+
+  const loadingLogin = CoreAuthenticationStore.loadingLoginSelector();
+
+  const errorLogin = CoreAuthenticationStore.authErrorSelector();
+
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -36,6 +46,12 @@ export const Login: React.FC<IloginProps> = observer((props) => {
   };
 
   const onError = (errors: any, e: any) => console.log(errors, e);
+
+  useEffect(() => {
+    if (isLoginSuccess) {
+      history.push('/user');
+    }
+  }, [history, isLoginSuccess]);
 
   return (
     <div
@@ -83,6 +99,17 @@ export const Login: React.FC<IloginProps> = observer((props) => {
                 Remember me
               </label>
             </div>
+
+            {errorLogin && (
+              <div
+                className="text-[#6fbaed] hover:text-[#90c7f0] cursor-pointer 
+							flex justify-start items-center"
+              >
+                <label htmlFor="remember-me" className="text-md text-red-500">
+                  {errorLogin}
+                </label>
+              </div>
+            )}
           </div>
           <div className="flex justify-center items-center w-full mt-5 md:mt-10 flex-col border-b-2 border-[#6fbaed]">
             <button className="bg-[#2d5095] text-white p-3 md:p-4 w-3/4 font-bold text-lg hover:drop-shadow-lg">
@@ -105,6 +132,8 @@ export const Login: React.FC<IloginProps> = observer((props) => {
           Don&apos;t have an account? Sign Up
         </a>
       </div>
+
+      {loadingLogin && <LoadingModal textOnLoading="Login..." />}
     </div>
   );
 });

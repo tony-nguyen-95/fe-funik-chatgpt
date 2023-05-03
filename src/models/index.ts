@@ -17,3 +17,4 @@ export interface IChangeHannah {
 
 export * from './login-form.model';
 export * from './user.model';
+export * from './login-response.model';

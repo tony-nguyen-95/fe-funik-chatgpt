@@ -1,18 +1,16 @@
 /* eslint-disable react/react-in-jsx-scope */
 import './App.scss';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import MainRoute from './routes';
-import LoginRoute from './routes/login';
-import UserRoute from './routes/user';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Login, User } from './pages';
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<LoginRoute />} />
-        <Route path="/user" element={<UserRoute />} />
-        <Route path="/" element={<MainRoute />} />
-      </Routes>
+      <Switch>
+        <Route path="/login" render={(props) => <Login {...props} />} />
+        <Route path="/user" render={(props) => <User {...props} />} />
+        {/* <Route path="/" component={<MainRoute />} /> */}
+      </Switch>
     </BrowserRouter>
   );
 };

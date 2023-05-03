@@ -9,16 +9,18 @@ orchestrator(loginAction, async (actionMessage) => {
   updateLoadingLoginAction(true);
 
   try {
-    const data = await loginAPI(username, password);
+    const { data } = await loginAPI(username, password);
 
-    if (data) {
+    if (data.apiStatusCode === 0) {
       updateLoginSuccessAction(true);
+    } else {
+      return updateErrorAuth(data.apiMessage);
     }
-
-    updateLoadingLoginAction(true);
   } catch (error) {
     if (error === 1) {
       return updateErrorAuth('The Username or Password is incorrect, please try again!');
     }
+  } finally {
+    updateLoadingLoginAction(false);
   }
 });
