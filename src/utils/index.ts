@@ -31,3 +31,45 @@ export const convertFormatDate = (dateInString: string) => {
 
   return { dd, mm, yyyy, formattedDate, hourMinute };
 };
+
+export function getContactType(num: Number) {
+  switch (num) {
+    case 1:
+      return 'Zalo';
+    case 2:
+      return 'Discord';
+    case 3:
+      return 'Facebook';
+    case 4:
+      return 'Email';
+    case 5:
+      return 'Viber';
+    case 6:
+      return 'Telegram';
+    case 7:
+      return 'Skype';
+    case 8:
+      return 'PhoneNumber';
+    case 99:
+      return 'Khác';
+    default:
+      return 'Chưa cập nhật';
+  }
+}
+
+export function getStatus(num: Number) {
+  switch (num) {
+    case 1:
+      return 'Mới';
+    case 2:
+      return 'Đang học';
+    case 3:
+      return 'Tạm dừng';
+    case 4:
+      return 'Bảo Lưu';
+    case 5:
+      return 'Hoàn Thành';
+    default:
+      return 'Chưa cập nhật';
+  }
+}

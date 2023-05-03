@@ -4,7 +4,8 @@
 export * from './hannah.model';
 // export * from './sticky-note.model';
 // export * from './student-contact.model';
-// export * from './student.model';
+export * from './student.model';
+export * from './student-contact.model';
 // export * from './user.model';
 // export * from './change-hannah.model';
 

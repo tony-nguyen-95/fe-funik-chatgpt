@@ -16,8 +16,8 @@ export const SideBar: React.FC<ISideBarProps> = observer((props) => {
 
   return (
     <nav
-      className={`left-0 ${
-        isHidden && '-left-full'
+      className={`${
+        isHidden ? '-left-full' : 'left-0'
       } md:left-0 absolute h-screen w-60 md:w-20 lg:w-28 py-5 border-r-2 transform transition-all duration-300 ease-in-out bg-white z-50`}
     >
       <div className="block md:flex flex-col justify-evenly items-center h-full p-3 md:px-0 md:py-5">
