@@ -85,7 +85,7 @@ export const StudentTable: React.FC<IStudentTableProps> = observer((props) => {
       <div className="w-max xl:w-full p-5 relative">
         <table className="table-auto drop-shadow-lg w-[60rem] xl:w-[70rem] m-auto">
           <thead>
-            <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+            <tr className="text-gray-600 bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300 uppercase text-sm leading-normal">
               <th className="px-4 py-2 rounded-tl-lg">Chọn</th>
               <th className="px-4 py-2">Mã HV</th>
               <th className="px-4 py-2">Họ Tên</th>
