@@ -1,5 +1,6 @@
 import React from 'react';
 import { IConfirmDeleteProps } from './confirm-delete.type';
+import { IoMdCloseCircle } from 'react-icons/io';
 
 const prefixClassName = 'confirm-delete';
 
@@ -14,23 +15,26 @@ export const ConfirmDelete: React.FC<IConfirmDeleteProps> = (props) => {
 			`}
     >
       <div className="bg-white min-w-[30rem] min-h-[14rem] rounded-lg relative animate-popup">
-        <h2 className="text-2xl font-semibold text-center border-b-2 border-gray-300 py-2 w-2/3 mx-auto mt-5">
-          Vui lòng Xác Nhận
-        </h2>
-        <div className="w-full h-full pl-16 mt-5">
-          <p className="text-lg font-semibold">{message}</p>
-        </div>
-
-        <div className="absolute bottom-2 right-2">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={callback}>
-            Xác nhận
-          </button>
+        <div
+          className="absolute top-0 w-full h-12 px-2 flex justify-between items-center border-b-2 border-gray-300
+					bg-gradient-to-r from-red-400 via-red-500 to-red-600 rounded-t-lg"
+        >
+          <h2 className="text-xl font-semibold text-center text-white">Vui lòng Xác Nhận</h2>
           <button
-            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2"
+            className="text-2xl text-slate-100 hover:text-slate-200 hover:rotate-90 transition-transform duration-300"
             onClick={() => setPopup(false)}
           >
-            Hủy
+            <IoMdCloseCircle size={40} />
           </button>
+        </div>
+        <div className="w-full min-h-[11rem] flex flex-col justify-center items-center">
+          <p className="text-lg font-semibold">{message}</p>
+
+          <div className="absolute bottom-2 right-2">
+            <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={callback}>
+              Xác nhận
+            </button>
+          </div>
         </div>
       </div>
     </div>

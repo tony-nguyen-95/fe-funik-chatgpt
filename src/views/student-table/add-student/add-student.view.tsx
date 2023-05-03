@@ -22,7 +22,7 @@ export const AddStudent: React.FC<IAddStudent> = (props) => {
         >
           <h2 className="text-2xl font-semibold text-center text-white">Thêm Học Viên</h2>
           <button
-            className="text-2xl text-red-500 hover:text-red-700 hover:rotate-90 transition-transform duration-300"
+            className="text-2xl text-red-500 hover:text-red-600 hover:rotate-90 transition-transform duration-300"
             onClick={() => setPopup(false)}
           >
             <IoMdCloseCircle size={40} />
