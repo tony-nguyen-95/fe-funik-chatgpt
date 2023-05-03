@@ -1,44 +1,52 @@
-# Getting Started with Create React App
+# Funix Hannah's Assistant
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![logo](https://raw.githubusercontent.com/tony-nguyen-95/fe-funik-chatgpt/main/src/assets/hannah's-assistant-logo.png?token=GHSAT0AAAAAAB7LRQARLSEKNTLDWSKYE5TKZCSOHHQ)
 
-## Available Scripts
+## Mô tả
 
-Install package:
+Một ứng dụng hỗ trợ các Hannah của Funix trong việc quản lý học viên và các lớp học.
 
-### `yarn`
+## Author
 
-If you want create new component/view/page:
+By **Coffee & Tea** team
 
+## Tính năng
+
+- [x] Đăng nhập
+- [x] Dashboard
+- [x] Quản lý học viên
+- [ ] Quản lý học viên của từng Hannah
+- [ ] Quản lý Hannah
+- [ ] Quản lý chứng chỉ, môn học
+- [ ] Sticky note
+- [ ] Trình giao tiếp với học viên
+- [ ] Kế hoạch học tập
+
+<br />
+<hr />
+
+## Cài đặt
+
+Clone project về máy
+
+```bash
+git clone https://github.com/tony-nguyen-95/fe-funik-chatgpt
 ```
-yarn generate "{component/view/page}" "{componentName}" "{componentPrefixName}"
+
+Cài đặt các gói phụ trợ cần thiết
+
+```bash
+yarn
 ```
 
-In the project directory, you can run:
+## Chạy project (development)
 
-### `yarn start`
+```bash
+yarn start
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Build project (production)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+yarn build
+```
