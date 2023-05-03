@@ -1,6 +1,6 @@
 # Funix Hannah's Assistant
 
-![logo](https://raw.githubusercontent.com/tony-nguyen-95/fe-funik-chatgpt/main/src/assets/hannah's-assistant-logo.png?token=GHSAT0AAAAAAB7LRQARLSEKNTLDWSKYE5TKZCSOHHQ)
+![logo](https://i.ibb.co/M50syyY/hannah-s-assistant-logo.png)
 
 ## Mô tả
 
