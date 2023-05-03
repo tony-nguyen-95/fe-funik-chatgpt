@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { IStudentTableProps } from './student-table.type';
 import { IStudent, IStudentContact } from '../../models';
 import { v4 as uuidv4 } from 'uuid';
+import { observer } from 'mobx-react';
 import { BsPencilSquare, BsFillPlusCircleFill, BsFillTrash3Fill, BsFillEyeFill } from 'react-icons/bs';
 import { TbExchange } from 'react-icons/tb';
 
@@ -69,7 +70,7 @@ for (const name of STUDENT_NAMES) {
   FUNIXID += 1;
 }
 
-export const StudentTable: React.FC<IStudentTableProps> = (props) => {
+export const StudentTable: React.FC<IStudentTableProps> = observer((props) => {
   const [contactPopup, setContactPopup] = useState(false);
   const [editPopup, setEditPopup] = useState(false);
   const [confirmDeletePopup, setConfirmDeletePopup] = useState(false);
@@ -81,8 +82,8 @@ export const StudentTable: React.FC<IStudentTableProps> = (props) => {
 
   return (
     <>
-      <div className="w-full flex flex-col justify-center items-center p-5 relative">
-        <table className="table-auto">
+      <div className="w-max xl:w-full p-5 relative">
+        <table className="table-auto drop-shadow-lg w-[60rem] xl:w-[70rem] m-auto">
           <thead>
             <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
               <th className="px-4 py-2 rounded-tl-lg">Chọn</th>
@@ -96,12 +97,19 @@ export const StudentTable: React.FC<IStudentTableProps> = (props) => {
             </tr>
           </thead>
           <tbody>
-            {TEMP_DATA.map((student) => (
-              <tr key={student.studentId}>
-                <td className="border px-4 py-2 text-center">
+            {TEMP_DATA.map((student, index) => (
+              <tr
+                key={student.studentId}
+                className={`transition-[background-color] hover:bg-gray-200 hover:text-gray-700 ${
+                  index % 2 === 0 ? 'bg-white' : 'bg-gray-100'
+                }
+								${idsToBeDeleted.includes(student.studentId) ? 'bg-red-200 hover:bg-red-300' : ''}
+								`}
+              >
+                <td className={`border px-4 py-2 text-center ${index === TEMP_DATA.length - 1 ? 'rounded-bl-lg' : ''}`}>
                   <input
                     type="checkbox"
-                    className="form-checkbox h-5 w-5 text-gray-600"
+                    className="form-checkbox h-5 w-5 text-gray-600 "
                     onChange={(e) => {
                       if (e.target.checked) {
                         setIdsToBeDeleted([...idsToBeDeleted, student.studentId]);
@@ -115,9 +123,11 @@ export const StudentTable: React.FC<IStudentTableProps> = (props) => {
                 <td className="border px-4 py-2 font-semibold">{student.name}</td>
                 <td className="border px-4 py-2">{student.funixEmail}</td>
                 <td className="border px-4 py-2 max-w-xs">{student.address}</td>
-                <td className="border px-4 py-2">
+                <td className="border px-4 py-2 flex justify-center items-center">
                   <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-2 flex justify-center items-center gap-2"
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded flex justify-center items-center gap-2
+										${idsToBeDeleted.includes(student.studentId) ? 'pointer-events-none opacity-70' : ''} transition-[background-color]
+										`}
                     onClick={() => {
                       setCurrentStudent(student);
                       setContactPopup(true);
@@ -127,10 +137,16 @@ export const StudentTable: React.FC<IStudentTableProps> = (props) => {
                   </button>
                 </td>
                 <td className="border px-4 py-2 text-center">{getStatus(student.status)}</td>
-                <td className="border px-4 py-2 text-center">
+                <td
+                  className={`border px-4 py-2 flex justify-center items-center ${
+                    index === TEMP_DATA.length - 1 ? 'rounded-br-lg' : ''
+                  }`}
+                >
                   <button
                     type="button"
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${
+                      idsToBeDeleted.includes(student.studentId) ? 'pointer-events-none opacity-70' : ''
+                    } transition-[background-color]`}
                     onClick={() => {
                       setCurrentStudent(student);
                       setEditPopup(true);
@@ -141,7 +157,9 @@ export const StudentTable: React.FC<IStudentTableProps> = (props) => {
                   </button>
                   <button
                     type="button"
-                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-1"
+                    className={`bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-1 ${
+                      idsToBeDeleted.includes(student.studentId) ? 'pointer-events-none opacity-70' : ''
+                    } transition-[background-color]`}
                     onClick={() => {
                       setCurrentStudent(student);
                       setChangeHannahPopup(true);
@@ -153,41 +171,32 @@ export const StudentTable: React.FC<IStudentTableProps> = (props) => {
                 </td>
               </tr>
             ))}
-
-            <tr>
-              <td className="border px-4 py-2" />
-              <td className="border px-4 py-2" />
-              <td className="border px-4 py-2" />
-              <td className="border px-4 py-2" />
-              <td className="border px-4 py-2" />
-              <td className="border px-4 py-2" />
-              <td className="border px-4 py-2" />
-              <td className="border px-4 py-2 flex justify-center items-center flex-col gap-1">
-                <button
-                  type="button"
-                  className="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded flex justify-center items-center gap-2"
-                  onClick={() => {
-                    setAddPopup(true);
-                  }}
-                >
-                  <BsFillPlusCircleFill /> Thêm
-                </button>
-                <button
-                  type="button"
-                  className={`bg-red-500 text-white font-bold py-2 px-4 rounded flex justify-center items-center ${
-                    idsToBeDeleted.length === 0 ? 'opacity-50' : 'hover:bg-red-700'
-                  } gap-2`}
-                  onClick={() => {
-                    setConfirmDeletePopup(true);
-                  }}
-                  disabled={idsToBeDeleted.length === 0}
-                >
-                  <BsFillTrash3Fill /> Xóa
-                </button>
-              </td>
-            </tr>
           </tbody>
         </table>
+
+        <div className="w-[60rem] xl:w-[70rem] flex justify-end items-center gap-2 mt-5 mx-auto drop-shadow-md">
+          <button
+            type="button"
+            className="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded flex justify-center items-center gap-2 transition-[background-color]"
+            onClick={() => {
+              setAddPopup(true);
+            }}
+          >
+            <BsFillPlusCircleFill /> Thêm
+          </button>
+          <button
+            type="button"
+            className={`bg-red-500 text-white font-bold py-2 px-4 rounded flex justify-center items-center ${
+              idsToBeDeleted.length === 0 ? 'opacity-50' : 'hover:bg-red-700'
+            } gap-2 transition-[background-color]`}
+            onClick={() => {
+              setConfirmDeletePopup(true);
+            }}
+            disabled={idsToBeDeleted.length === 0}
+          >
+            <BsFillTrash3Fill /> Xóa
+          </button>
+        </div>
       </div>
 
       <ViewContacts popup={contactPopup} setPopup={setContactPopup} contacts={CONTACTS || []} />
@@ -316,4 +325,4 @@ export const StudentTable: React.FC<IStudentTableProps> = (props) => {
       />
     </>
   );
-};
+});

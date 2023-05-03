@@ -1,7 +1,7 @@
 import React from 'react';
 import { IViewContactsProps } from './view-contacts.type';
 
-import { AiFillCloseSquare } from 'react-icons/ai';
+import { IoMdCloseCircle } from 'react-icons/io';
 import { getContactType } from '../../utils';
 
 const prefixClassName = 'view-contacts';
@@ -16,15 +16,20 @@ export const ViewContacts: React.FC<IViewContactsProps> = (props) => {
 				${popup ? 'block' : 'hidden'}
 			`}
     >
-      <div className="bg-white min-w-[40%] min-h-[40%] flex flex-col justify-center items-center rounded-lg relative animate-popup">
-        <div className="absolute top-2 right-2">
-          <button className="text-2xl text-red-500 hover:text-red-700" onClick={() => setPopup(false)}>
-            <AiFillCloseSquare size={45} />
+      <div className="bg-white min-w-[19rem] min-h-[20rem] flex flex-col justify-start items-center rounded-lg relative animate-popup">
+        <div
+          className="absolute top-0 w-full h-12 px-2 flex justify-between items-center border-b-2 border-gray-300
+					bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 rounded-t-lg"
+        >
+          <h2 className="text-xl font-semibold text-center text-white">Thông tin liên hệ</h2>
+          <button
+            className="text-2xl text-red-500 hover:text-red-700 hover:rotate-90 transition-transform duration-300"
+            onClick={() => setPopup(false)}
+          >
+            <IoMdCloseCircle size={40} />
           </button>
         </div>
-
-        <h2 className="text-2xl font-semibold text-center border-b-2 border-gray-300 py-2 w-2/3">Thông tin liên hệ</h2>
-        <div className="w-full h-full pl-16 mt-10">
+        <div className="min-w-[16rem] min-h-[17rem] mt-12 flex flex-col justify-center items-start">
           {contacts?.map((contact) => (
             <div key={contact.contactType}>
               <p className="text-lg font-semibold">{getContactType(contact.contactType)}</p>
