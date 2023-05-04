@@ -1,7 +1,7 @@
 import { orchestrator } from 'satcheljs';
 import { loginAPI } from '../../../apis';
-import { loginAction } from '../action';
-import { updateErrorAuth, updateLoadingLoginAction, updateLoginSuccessAction } from '../mutator-action';
+import { loginAction, updateAccessTokenAction } from '../action';
+import { updateErrorAuth, updateLoadingLoginAction } from '../mutator-action';
 
 orchestrator(loginAction, async (actionMessage) => {
   const { username, password } = actionMessage;
@@ -12,7 +12,7 @@ orchestrator(loginAction, async (actionMessage) => {
     const { data } = await loginAPI(username, password);
 
     if (data.apiStatusCode === 0) {
-      updateLoginSuccessAction(true);
+      updateAccessTokenAction(data.returnData.token);
     } else {
       return updateErrorAuth(data.apiMessage);
     }

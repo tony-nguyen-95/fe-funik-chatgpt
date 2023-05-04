@@ -1,1 +1,5 @@
-export interface IHannahTableProps {}
+import { IUserLoginResponse } from '../../models';
+
+export interface IHannahTableProps {
+  hannahs: IUserLoginResponse[];
+}

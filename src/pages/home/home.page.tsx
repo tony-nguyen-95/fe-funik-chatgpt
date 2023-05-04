@@ -10,6 +10,8 @@ import { DoughnutChart, VerticalBarChart } from '../../components';
 import { BsPeopleFill, BsPersonWorkspace, BsShare } from 'react-icons/bs';
 import { MdFileDownloadDone, MdOutlineContentPaste } from 'react-icons/md';
 import { TfiReload } from 'react-icons/tfi';
+import { useHistory } from 'react-router-dom';
+import { CoreAuthenticationStore } from '../../stores';
 
 const TEMP_DATA = {
   date: new Intl.DateTimeFormat('vi').format(),
@@ -60,11 +62,21 @@ const TEMP_DATA = {
 };
 
 export const Home: React.FC<IHomeProps> = observer((props) => {
+  const history = useHistory();
+
   const [navHidden, setNavHidden] = useState(true);
+
+  const isLogin = CoreAuthenticationStore.isLoginSelector();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (!isLogin) {
+      history.push('/login');
+    }
+  }, [history, isLogin]);
 
   return (
     <>
