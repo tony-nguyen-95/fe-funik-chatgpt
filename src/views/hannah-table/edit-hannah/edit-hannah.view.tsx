@@ -29,12 +29,12 @@ export const EditHannah: React.FC<IEditHannahProps> = (props) => {
 				${popup ? 'block' : 'hidden'}
 			`}
     >
-      <div className="bg-white min-w-[40rem] min-h-[27rem] py-5 flex flex-col justify-center items-center rounded-lg relative animate-popup">
+      <div className="bg-white w-[95%] md:w-auto md:min-w-[40rem] min-h-[27rem] py-5 flex flex-col justify-center items-center rounded-lg relative animate-popup">
         <div
           className="absolute top-0 w-full h-12 px-2 flex justify-between items-center border-b-2 border-gray-300
 					bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 rounded-t-lg"
         >
-          <h2 className="text-2xl font-semibold text-center text-white">Chỉnh sửa thông tin Hannah</h2>
+          <h2 className="text-lg md:text-2xl font-semibold text-center text-white">Chỉnh sửa thông tin Hannah</h2>
           <button
             className="text-2xl text-red-500 hover:text-red-600 hover:rotate-90 transition-transform duration-300"
             onClick={() => setPopup(false)}

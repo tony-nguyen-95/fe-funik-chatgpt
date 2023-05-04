@@ -15,7 +15,7 @@ export const ChangeHannah: React.FC<IChangeHannahProps> = (props) => {
 				${popup ? 'block' : 'hidden'}
 			`}
     >
-      <div className="bg-white min-w-[30rem] min-h-[20rem] py-5 flex flex-col justify-center items-center rounded-lg relative animate-popup">
+      <div className="bg-white w-[95%] md:w-auto md:min-w-[30rem] min-h-[20rem] py-5 flex flex-col justify-center items-center rounded-lg relative animate-popup">
         <div
           className="absolute top-0 w-full h-12 px-2 flex justify-between items-center border-b-2 border-gray-300
 					bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 rounded-t-lg"
@@ -30,11 +30,11 @@ export const ChangeHannah: React.FC<IChangeHannahProps> = (props) => {
         </div>
 
         <div className="w-full min-h-[17rem] mt-12 flex flex-col justify-center items-start">
-          <p id="current-hannah" className="text-lg px-8">
+          <p id="current-hannah" className="text-lg px-4 md:px-8">
             Hannah hiện tại: <span className="font-semibold">{curHannah?.name || 'Chưa có Hannah'}</span>
           </p>
 
-          <form method="POST" onSubmit={callback} className="w-full py-2 px-8 mt-5">
+          <form method="POST" onSubmit={callback} className="w-full py-2 px-4 md:px-8 mt-5">
             <label htmlFor="hannahId" className="text-md font-semibold mt-3">
               Chọn Hannah mới
             </label>
@@ -62,7 +62,10 @@ export const ChangeHannah: React.FC<IChangeHannahProps> = (props) => {
             />
 
             <div className="flex justify-end items-center w-full mt-8 gap-3">
-              <button type="submit" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+              <button
+                type="submit"
+                className="hover:shadow-md transition-shadow duration-300 bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 text-white font-bold py-2 px-6 rounded"
+              >
                 Thay đổi
               </button>
             </div>

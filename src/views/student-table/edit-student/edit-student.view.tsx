@@ -31,12 +31,12 @@ export const EditStudent: React.FC<IEditStudent> = (props) => {
 				${popup ? 'block' : 'hidden'}
 			`}
     >
-      <div className="bg-white min-w-[40rem] min-h-[30rem] py-5 flex flex-col justify-center items-center rounded-lg relative animate-popup">
+      <div className="bg-white w-[95%] md:w-auto md:min-w-[40rem] min-h-[30rem] py-5 flex flex-col justify-center items-center rounded-lg relative animate-popup">
         <div
           className="absolute top-0 w-full h-12 px-2 flex justify-between items-center border-b-2 border-gray-300
 					bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 rounded-t-lg"
         >
-          <h2 className="text-2xl font-semibold text-center text-white">Chỉnh sửa thông tin Học Viên</h2>
+          <h2 className="text-lg md:text-2xl font-semibold text-center text-white">Chỉnh sửa thông tin Học Viên</h2>
           <button
             className="text-2xl text-red-500 hover:text-red-600 hover:rotate-90 transition-transform duration-300"
             onClick={() => setPopup(false)}
@@ -45,7 +45,7 @@ export const EditStudent: React.FC<IEditStudent> = (props) => {
           </button>
         </div>
 
-        <form method="POST" onSubmit={callback} className="w-full min-h-[27rem] py-2 px-8 mt-12">
+        <form method="POST" onSubmit={callback} className="w-full min-h-[27rem] py-2 px-4 md:px-8 mt-12">
           <label htmlFor="name" className="text-md font-semibold">
             Họ Tên
           </label>
@@ -114,9 +114,11 @@ export const EditStudent: React.FC<IEditStudent> = (props) => {
           <br />
 
           <div className="flex justify-end items-center w-full mt-5 gap-3">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded">Lưu</button>
+            <button className="hover:shadow-md transition-shadow duration-300 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white font-bold py-2 px-6 rounded">
+              Lưu
+            </button>
             <button
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded"
+              className="hover:shadow-md transition-shadow duration-300 bg-gradient-to-r from-red-400 via-red-500 to-red-600 text-white font-bold py-2 px-6 rounded"
               type="button"
               onClick={() => setPopup(false)}
             >
