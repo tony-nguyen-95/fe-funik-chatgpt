@@ -29,4 +29,4 @@ const setApiAccessToken = (accessToken: string | undefined) => {
   else delete API.defaults.headers.common.Authorization;
 };
 
-export { API, ThrowApiError };
+export { API, ThrowApiError, setApiAccessToken };

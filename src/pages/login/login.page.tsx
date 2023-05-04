@@ -24,7 +24,7 @@ const LoginSchema = yup.object().shape({
 export const Login: React.FC<IloginProps> = observer((props) => {
   const history = useHistory();
 
-  const isLoginSuccess = CoreAuthenticationStore.isLoginSuccessSelector();
+  const isLogin = CoreAuthenticationStore.isLoginSelector();
 
   const loadingLogin = CoreAuthenticationStore.loadingLoginSelector();
 
@@ -48,10 +48,10 @@ export const Login: React.FC<IloginProps> = observer((props) => {
   const onError = (errors: any, e: any) => console.log(errors, e);
 
   useEffect(() => {
-    if (isLoginSuccess) {
-      history.push('/user');
+    if (isLogin) {
+      history.push('/');
     }
-  }, [history, isLoginSuccess]);
+  }, [history, isLogin]);
 
   return (
     <div

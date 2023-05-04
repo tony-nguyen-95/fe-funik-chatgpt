@@ -1,7 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import './App.scss';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { Login, User } from './pages';
+import { Home, Login, User } from './pages';
 
 const App = () => {
   return (
@@ -9,7 +9,7 @@ const App = () => {
       <Switch>
         <Route path="/login" render={(props) => <Login {...props} />} />
         <Route path="/user" render={(props) => <User {...props} />} />
-        {/* <Route path="/" component={<MainRoute />} /> */}
+        <Route path="/" exact render={(props) => <Home {...props} />} />
       </Switch>
     </BrowserRouter>
   );

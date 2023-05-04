@@ -63,7 +63,7 @@ const TEMP_DATA: IUser[] = [
   },
 ];
 
-export const UserTable: React.FC<IUserTableProps> = (props) => {
+export const UserTable: React.FC<IUserTableProps> = ({ allUser }) => {
   const [popUp, setPopUp] = useState(false);
   const [popUpDelete, setPopUpDelete] = useState(false);
   const [popUpAdd, setPopUpAdd] = useState(false);
@@ -84,7 +84,7 @@ export const UserTable: React.FC<IUserTableProps> = (props) => {
               </tr>
             </thead>
             <tbody>
-              {TEMP_DATA.map((user, index) => (
+              {allUser.map((user, index) => (
                 <tr
                   key={user.userId}
                   className="border-gray-200 hover:bg-gray-100 text-gray-600 text-sm leading-normal"

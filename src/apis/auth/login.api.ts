@@ -11,6 +11,5 @@ export const loginAPI = (username: string, password: string) => {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
-    withCredentials: false,
   });
 };
