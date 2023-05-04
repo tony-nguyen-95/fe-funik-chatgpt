@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { IUserProps } from './user.type';
-import { Header, SideBar, UserTable, HannahTable, StudentTable } from '../../views';
+import { Header, SideBar, HannahTable, StudentTable } from '../../views';
 import { observer } from 'mobx-react';
 import { CoreUserStore } from '../../stores/store-user';
 import { CoreAuthenticationStore } from '../../stores';
@@ -18,7 +18,7 @@ export const User: React.FC<IUserProps> = observer((props) => {
 
   const [navHidden, setNavHidden] = useState(true);
 
-  const [tab, setTab] = useState(0);
+  const [tab, setTab] = useState(1);
 
   const summaryUser = useMemo(() => {
     const all: IUserLoginResponse[] = [];
@@ -67,22 +67,24 @@ export const User: React.FC<IUserProps> = observer((props) => {
             setNavHidden(true);
           }}
         >
-          <div className="text-[#3250ae] text-lg font-bold font-sans p-3 md:px-5">USER MANAGER</div>
+          <div className="text-[#3250ae] text-lg font-bold font-sans p-3 md:px-5">QUẢN LÝ HANNAH & HỌC VIÊN</div>
           <div className="w-full">
             <ul className="m-auto w-5/6 border-b-2 flex justify-evenly items-center text-sm font-bold font-sans text-[#3250ae] p-3 md:px-5">
-              <li className={`${tab === 0 && 'border-b-2 border-[#3250ae]'} cursor-pointer`} onClick={() => setTab(0)}>
-                All User
-              </li>
-              <li className={`${tab === 1 && 'border-b-2 border-[#3250ae]'} cursor-pointer`} onClick={() => setTab(1)}>
+              <li
+                className={`${tab === 1 && 'border-b-2 border-[#3250ae] scale-110'} cursor-pointer transition-all`}
+                onClick={() => setTab(1)}
+              >
                 Hannah
               </li>
-              <li className={`${tab === 2 && 'border-b-2 border-[#3250ae]'} cursor-pointer`} onClick={() => setTab(2)}>
+              <li
+                className={`${tab === 2 && 'border-b-2 border-[#3250ae] scale-110'} cursor-pointer transition-all`}
+                onClick={() => setTab(2)}
+              >
                 Student
               </li>
             </ul>
 
             <div>
-              {tab === 0 && <UserTable allUser={summaryUser.all} />}
               {tab === 1 && <HannahTable hannahs={summaryUser.hannahs} />}
               {tab === 2 && <StudentTable />}
             </div>

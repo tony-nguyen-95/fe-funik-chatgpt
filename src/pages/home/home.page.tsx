@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import './home.style.scss';
 import { IHomeProps } from './home.type';
 
-// import { Loading } from '../../components';
 import { observer } from 'mobx-react';
 import { SideBar, Header } from '../../views';
 import { DoughnutChart, VerticalBarChart } from '../../components';
@@ -174,21 +172,27 @@ export const Home: React.FC<IHomeProps> = observer((props) => {
                   <h4 className="font-sans">{'> 3 lần'}</h4>
                   <div className="flex justify-center items-center gap-3 mt-3">
                     <BsShare size={30} className="inline" color="#e5864f" />
-                    <p className="inline text-[#5970f6] text-2xl ">{TEMP_DATA.students.tuongtac[0].moreThanThree}</p>
+                    <p className="inline text-[#5970f6] text-2xl ">
+                      {TEMP_DATA.students.tuongtac[TEMP_DATA.students.tuongtac.length - 1].moreThanThree}
+                    </p>
                   </div>
                 </div>
                 <div>
                   <h4 className="font-sans">1 - 3 lần</h4>
                   <div className="flex justify-center items-center gap-3 mt-3">
                     <TfiReload size={30} className="inline" color="#e5864f" />
-                    <p className="inline text-[#5970f6] text-2xl ">{TEMP_DATA.students.tuongtac[0].oneToThree}</p>
+                    <p className="inline text-[#5970f6] text-2xl ">
+                      {TEMP_DATA.students.tuongtac[TEMP_DATA.students.tuongtac.length - 1].oneToThree}
+                    </p>
                   </div>
                 </div>
                 <div>
                   <h4 className="font-sans">Chưa liên hệ</h4>
                   <div className="flex justify-center items-center gap-3 mt-3">
                     <MdOutlineContentPaste size={34} className="inline" color="#e5864f" />
-                    <p className="inline text-[#5970f6] text-2xl ">{TEMP_DATA.students.tuongtac[0].zero}</p>
+                    <p className="inline text-[#5970f6] text-2xl ">
+                      {TEMP_DATA.students.tuongtac[TEMP_DATA.students.tuongtac.length - 1].zero}
+                    </p>
                   </div>
                 </div>
               </div>

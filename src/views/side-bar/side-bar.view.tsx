@@ -1,6 +1,5 @@
 import React from 'react';
 import { ISideBarProps } from './side-bar.type';
-import './side-bar.style.scss';
 import { observer } from 'mobx-react';
 import { useTranslation } from 'react-i18next';
 
@@ -16,8 +15,8 @@ export const SideBar: React.FC<ISideBarProps> = observer((props) => {
 
   return (
     <nav
-      className={`left-0 ${
-        isHidden && '-left-full'
+      className={`${
+        isHidden ? '-left-full' : 'left-0'
       } md:left-0 absolute h-screen w-60 md:w-20 lg:w-28 py-5 border-r-2 transform transition-all duration-300 ease-in-out bg-white z-50`}
     >
       <div className="block md:flex flex-col justify-evenly items-center h-full p-3 md:px-0 md:py-5">
@@ -41,9 +40,9 @@ export const SideBar: React.FC<ISideBarProps> = observer((props) => {
         </a>
         <a
           className={`flex gap-5 border-b-2 md:gap-0 md:border-0 md:flex-col justify-start md:justify-center items-center ${
-            active === 'toolbox' ? 'text-[#e9a074]' : 'text-[#41609f]'
+            active === 'tools' ? 'text-[#e9a074]' : 'text-[#41609f]'
           } mt-5 md:mt-0`}
-          href="/toolbox"
+          href="/tools"
         >
           <CgToolbox size={40} />
           <span className="text-md md:text-xs">Toolbox</span>
@@ -52,7 +51,7 @@ export const SideBar: React.FC<ISideBarProps> = observer((props) => {
           className={`flex gap-5 border-b-2 md:gap-0 md:border-0 md:flex-col justify-start md:justify-center items-center ${
             active === 'status' ? 'text-[#e9a074]' : 'text-[#41609f]'
           } mt-5 md:mt-0`}
-          href="/status"
+          href="#"
         >
           <BsSpeedometer2 size={40} />
           <span className="text-md md:text-xs">Status</span>
