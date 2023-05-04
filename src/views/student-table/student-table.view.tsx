@@ -101,7 +101,7 @@ export const StudentTable: React.FC<IStudentTableProps> = observer((props) => {
               <tr
                 key={student.studentId}
                 className={`transition-[background-color] hover:bg-gray-200 hover:text-gray-700 ${
-                  index % 2 === 0 ? 'bg-white' : 'bg-gray-100'
+                  index % 2 === 0 && !idsToBeDeleted.includes(student.studentId) ? 'bg-white' : 'bg-gray-100'
                 }
 								${idsToBeDeleted.includes(student.studentId) ? 'bg-red-200 hover:bg-red-300' : ''}
 								`}

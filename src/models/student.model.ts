@@ -3,7 +3,7 @@ export interface IStudent {
   name: string | null;
   funixId: string | null;
   funixEmail: string | null;
-  address: string;
+  address: string | null;
   status: number;
   hannahId: string;
 }
