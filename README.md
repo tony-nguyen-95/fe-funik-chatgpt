@@ -15,8 +15,8 @@ By **Coffee & Tea** team
 - [x] Đăng nhập
 - [x] Dashboard
 - [x] Quản lý học viên
-- [ ] Quản lý học viên của từng Hannah
-- [ ] Quản lý Hannah
+- [x] Quản lý học viên của từng Hannah
+- [x] Quản lý Hannah
 - [ ] Quản lý chứng chỉ, môn học
 - [ ] Sticky note
 - [ ] Trình giao tiếp với học viên
