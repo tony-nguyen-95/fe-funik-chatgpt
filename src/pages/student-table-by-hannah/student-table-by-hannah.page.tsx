@@ -4,7 +4,7 @@ import { Header, SideBar, ViewContacts, EditHannahStudent, EditContact } from '.
 import { IHannahStudent } from '../../models';
 import { BsFillEyeFill, BsPencilSquare, BsFillChatSquareTextFill } from 'react-icons/bs';
 import { getProgress, getStatus } from '../../utils';
-import { AiFillPlusCircle } from 'react-icons/ai';
+// import { AiFillPlusCircle } from 'react-icons/ai';
 
 const prefixClassName = 'student-table-by-hannah';
 const TEMP_DATA: IHannahStudent[] = [
@@ -133,16 +133,6 @@ export const StudentTableByHannah: React.FC<IStudentTableByHannahProps> = (props
                           title="Xem liên hệ"
                         >
                           <BsFillEyeFill /> Xem
-                        </button>
-                        <button
-                          className="bg-emerald-500 hover:bg-emerald-700 py-2 px-4 rounded text-white transition-[background-color]"
-                          onClick={() => {
-                            setCurrentStudent(student);
-                            setEditContactPopup(true);
-                          }}
-                          title="Cập nhật liên hệ"
-                        >
-                          <AiFillPlusCircle />
                         </button>
                       </div>
                     </td>

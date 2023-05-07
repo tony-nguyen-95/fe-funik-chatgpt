@@ -159,8 +159,8 @@ export const Home: React.FC<IHomeProps> = observer((props) => {
                   </p>
                 </div>
               </div>
-              <div>
-                <div className="w-full xl:w-[55%] mt-5">
+              <div className="w-full md:w-[35%] xl:w-80">
+                <div className="mt-5">
                   <DoughnutChart data={TEMP_DATA.students.progress} />
                 </div>
                 <p className="text-lg xl:text-md font-sans font-semibold mt-4 text-center w-full xl:w-2/3">
