@@ -30,23 +30,27 @@ export const ViewContacts: React.FC<IViewContactsProps> = (props) => {
           </button>
         </div>
         <div className="min-w-[16rem] min-h-[17rem] mt-12 flex flex-col justify-center items-start">
-          {contacts?.map((contact) => (
-            <div key={contact.contactType}>
-              <p className="text-lg font-semibold">{getContactType(contact.contactType)}</p>
-              {contact.contactType === 3 ? (
-                <a
-                  href={contact.name ?? ''}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-blue-500 hover:text-blue-700"
-                >
-                  {contact.name}
-                </a>
-              ) : (
-                <p>{contact.name}</p>
-              )}
-            </div>
-          ))}
+          {contacts && contacts.length === 0 ? (
+            <p className="text-lg font-semibold text-center w-full">Không có thông tin liên hệ</p>
+          ) : (
+            contacts.map((contact) => (
+              <div key={contact.contactType}>
+                <p className="text-lg font-semibold">{getContactType(contact.contactType)}</p>
+                {contact.contactType === 3 ? (
+                  <a
+                    href={contact.name ?? ''}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-blue-500 hover:text-blue-700"
+                  >
+                    {contact.name}
+                  </a>
+                ) : (
+                  <p>{contact.name}</p>
+                )}
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>

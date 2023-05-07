@@ -3,6 +3,8 @@ export * from './hannah.model';
 // export * from './student-contact.model';
 export * from './student.model';
 export * from './student-contact.model';
+export * from './hannah-student.model';
+export * from './temp-certificate.model';
 // export * from './user.model';
 // export * from './change-hannah.model';
 

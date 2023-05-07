@@ -1,76 +1,47 @@
 import React, { useState } from 'react';
 import { IStudentTableByHannahProps } from './student-table-by-hannah.type';
-import { Header, SideBar, ViewContacts, EditStudent } from '../../views';
-import { IStudent, IStudentContact } from '../../models';
+import { Header, SideBar, ViewContacts, EditHannahStudent, EditContact } from '../../views';
+import { IHannahStudent } from '../../models';
 import { BsFillEyeFill, BsPencilSquare, BsFillChatSquareTextFill } from 'react-icons/bs';
-import { getStatus } from '../../utils';
+import { getProgress, getStatus } from '../../utils';
+import { AiFillPlusCircle } from 'react-icons/ai';
 
 const prefixClassName = 'student-table-by-hannah';
-const TEMP_DATA: IStudent[] = [
+const TEMP_DATA: IHannahStudent[] = [
   {
-    studentId: '4fcb845d-3f67-4a86-a1c9-bb9ad933673d',
+    hannahStudentId: '2c02b42d-71b9-473f-bf8f-85c3b2a34a49',
+    studentId: '5c663bdd-ed07-4c47-8b6b-65bb5aa3902f',
+    name: 'Nguyễn Chí Công',
+    funixEmail: 'nguyenchicong@funix.edu.vn',
+    funixId: 'FX24221',
+    certificate: 'Chưa có chứng chỉ',
+    endCertificateDate: null,
+    subjectLessionLearning: 'Chưa bắt đầu học',
+    supportStartDate: '2023-05-04T01:25:19.562',
+    status: 1,
+    progress: 0,
+    contacts: [],
+  },
+  {
+    hannahStudentId: '2ef5b6c1-6704-4a24-8ae2-35cd52665959',
+    studentId: '7a5d86bb-2e21-44f3-911a-eab2942392a4',
     name: 'Nguyễn Văn A',
+    funixEmail: 'abs@funix.edu.vn',
     funixId: 'FX0101',
-    funixEmail: 'nguyễn_văn_a@funix.edu.vn',
+    certificate: 'Chứng chỉ 002',
+    endCertificateDate: null,
+    subjectLessionLearning: 'Chưa bắt đầu học',
+    supportStartDate: '2023-05-04T01:25:19.562',
     status: 1,
-    address: 'Hà Nội',
-    hannahId: '00000000-0000-0000-0000-000000000000',
-  },
-  {
-    studentId: '3bc9a342-2c3e-4091-8c2d-a3c25ff0b96d',
-    name: 'Nguyễn Văn B',
-    funixId: 'FX0102',
-    funixEmail: 'nguyễn_văn_b@funix.edu.vn',
-    status: 1,
-    address: 'Hà Nội',
-    hannahId: '00000000-0000-0000-0000-000000000000',
-  },
-  {
-    studentId: '68adddc2-4d5e-4558-967f-7be72a507e27',
-    name: 'Nguyễn Văn C',
-    funixId: 'FX0103',
-    funixEmail: 'nguyễn_văn_c@funix.edu.vn',
-    status: 1,
-    address: 'Hà Nội',
-    hannahId: '00000000-0000-0000-0000-000000000000',
-  },
-  {
-    studentId: '012b562b-8737-4597-8640-2085b6701bf5',
-    name: 'Nguyễn Văn D',
-    funixId: 'FX0104',
-    funixEmail: 'nguyễn_văn_d@funix.edu.vn',
-    status: 1,
-    address: 'Hà Nội',
-    hannahId: '00000000-0000-0000-0000-000000000000',
-  },
-  {
-    studentId: '2719627a-ee87-4b75-873e-846022bdd5ca',
-    name: 'Nguyễn Văn E',
-    funixId: 'FX0105',
-    funixEmail: 'nguyễn_văn_e@funix.edu.vn',
-    status: 1,
-    address: 'Hà Nội',
-    hannahId: '00000000-0000-0000-0000-000000000000',
-  },
-];
-const DEMO_CONTACTS: IStudentContact[] = [
-  {
-    studentId: '',
-    studentContactId: '',
-    contactType: 1,
-    name: '0123456789',
-  },
-  {
-    studentId: '',
-    studentContactId: '',
-    contactType: 2,
-    name: 'RFSADRENO#4012',
-  },
-  {
-    studentId: '',
-    studentContactId: '',
-    contactType: 3,
-    name: 'https://facebook.com/NVA',
+    progress: 0,
+    contacts: [
+      {
+        studentId: '7a5d86bb-2e21-44f3-911a-eab2942392a4',
+        studentContactId: '4ceb68f8-725b-4e22-b1b1-71b1bfe80ef6',
+        contactType: 3,
+        name: 'https://facebook.com/NVA',
+      },
+    ],
   },
 ];
 
@@ -78,7 +49,9 @@ export const StudentTableByHannah: React.FC<IStudentTableByHannahProps> = (props
   const [navHidden, setNavHidden] = useState(true);
   const [contactPopup, setContactPopup] = useState(false);
   const [editPopup, setEditPopup] = useState(false);
-  const [currentStudent, setCurrentStudent] = useState<IStudent | null>(null);
+  const [editContactPopup, setEditContactPopup] = useState(false);
+  const [contactDeletePending, setContactDeletePending] = useState(new Set<string>());
+  const [currentStudent, setCurrentStudent] = useState<IHannahStudent | null>(null);
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState(0);
 
@@ -127,9 +100,9 @@ export const StudentTableByHannah: React.FC<IStudentTableByHannahProps> = (props
                   <th className="px-4 py-2">Mã HV</th>
                   <th className="px-4 py-2">Họ Tên</th>
                   <th className="px-4 py-2">Email</th>
-                  <th className="px-4 py-2">Địa Chỉ</th>
+                  <th className="px-4 py-2">T.Thái</th>
+                  <th className="px-4 py-2">Tiến Độ</th>
                   <th className="px-4 py-2">Liên Hệ</th>
-                  <th className="px-4 py-2">Trạng Thái</th>
                   <th className="px-4 py-2 rounded-tr-lg">Chức Năng</th>
                 </tr>
               </thead>
@@ -147,19 +120,32 @@ export const StudentTableByHannah: React.FC<IStudentTableByHannahProps> = (props
                     <td className="border px-4 py-2">{student.funixId}</td>
                     <td className="border px-4 py-2 font-semibold">{student.name}</td>
                     <td className="border px-4 py-2">{student.funixEmail}</td>
-                    <td className="border px-4 py-2 max-w-xs">{student.address}</td>
-                    <td className="border px-4 py-2 flex justify-center items-center">
-                      <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded flex justify-center items-center gap-2 transition-[background-color]"
-                        onClick={() => {
-                          setCurrentStudent(student);
-                          setContactPopup(true);
-                        }}
-                      >
-                        <BsFillEyeFill /> Xem
-                      </button>
-                    </td>
                     <td className="border px-4 py-2 text-center">{getStatus(student.status)}</td>
+                    <td className="border px-4 py-2 text-center">{getProgress(student.progress)}</td>
+                    <td className="border px-4 py-2">
+                      <div className="m-auto flex justify-center items-center gap-1">
+                        <button
+                          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded flex justify-center items-center gap-2 transition-[background-color]"
+                          onClick={() => {
+                            setCurrentStudent(student);
+                            setContactPopup(true);
+                          }}
+                          title="Xem liên hệ"
+                        >
+                          <BsFillEyeFill /> Xem
+                        </button>
+                        <button
+                          className="bg-emerald-500 hover:bg-emerald-700 py-2 px-4 rounded text-white transition-[background-color]"
+                          onClick={() => {
+                            setCurrentStudent(student);
+                            setEditContactPopup(true);
+                          }}
+                          title="Cập nhật liên hệ"
+                        >
+                          <AiFillPlusCircle />
+                        </button>
+                      </div>
+                    </td>
                     <td
                       className={`border px-4 py-2 flex justify-center items-center ${
                         index === TEMP_DATA.length - 1 ? 'rounded-br-lg' : ''
@@ -191,14 +177,14 @@ export const StudentTableByHannah: React.FC<IStudentTableByHannahProps> = (props
               </tbody>
             </table>
 
-            <ViewContacts popup={contactPopup} setPopup={setContactPopup} contacts={DEMO_CONTACTS} />
-            <EditStudent
+            <ViewContacts popup={contactPopup} setPopup={setContactPopup} contacts={currentStudent?.contacts ?? []} />
+            <EditHannahStudent
               baseInfo={{
                 name: currentStudent?.name || '',
                 funixId: currentStudent?.funixId || '',
                 funixEmail: currentStudent?.funixEmail || '',
-                address: currentStudent?.address || '',
                 status: currentStudent?.status || 1,
+                progress: currentStudent?.progress || 0,
               }}
               popup={editPopup}
               setPopup={setEditPopup}
@@ -211,9 +197,9 @@ export const StudentTableByHannah: React.FC<IStudentTableByHannahProps> = (props
                   const funixId = document.getElementById('funixId') as HTMLInputElement;
                   const funixEmail = document.getElementById('funixEmail') as HTMLInputElement;
                   const status = document.getElementById('status') as HTMLSelectElement;
-                  const address = document.getElementById('address') as HTMLInputElement;
+                  const progress = document.getElementById('progress') as HTMLSelectElement;
 
-                  if (!name.value || !funixId.value || !funixEmail.value || !status.value) {
+                  if (!name.value || !funixId.value || !funixEmail.value) {
                     return false;
                   }
 
@@ -221,10 +207,22 @@ export const StudentTableByHannah: React.FC<IStudentTableByHannahProps> = (props
                   TEMP_DATA[index].funixId = funixId.value;
                   TEMP_DATA[index].funixEmail = funixEmail.value;
                   TEMP_DATA[index].status = Number(status.value);
-                  TEMP_DATA[index].address = address.value;
+                  TEMP_DATA[index].progress = Number(progress.value);
 
                   setEditPopup(false);
                 }
+
+                return false;
+              }}
+            />
+            <EditContact
+              popup={editContactPopup}
+              setPopup={setEditContactPopup}
+              pendingDelete={contactDeletePending}
+              setPendingDelete={setContactDeletePending}
+              contacts={currentStudent?.contacts ?? []}
+              callback={(event) => {
+                event.preventDefault();
 
                 return false;
               }}

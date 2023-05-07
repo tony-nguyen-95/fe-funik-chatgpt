@@ -50,7 +50,7 @@ export function getContactType(num: Number) {
       return 'Skype';
     case 8:
       return 'PhoneNumber';
-    case 99:
+    case 9:
       return 'Khác';
     default:
       return 'Chưa cập nhật';
@@ -69,6 +69,21 @@ export function getStatus(num: Number) {
       return 'Bảo Lưu';
     case 5:
       return 'Hoàn Thành';
+    default:
+      return 'Chưa cập nhật';
+  }
+}
+
+export function getProgress(num: Number) {
+  switch (num) {
+    case 0:
+      return 'Không xác định';
+    case 1:
+      return 'Trễ tiến độ';
+    case 2:
+      return 'Đúng tiến độ';
+    case 3:
+      return 'Vượt tiến độ';
     default:
       return 'Chưa cập nhật';
   }
