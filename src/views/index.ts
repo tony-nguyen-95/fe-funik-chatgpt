@@ -7,4 +7,6 @@ export * from './view-contacts';
 export * from './confirm-delete';
 export * from './student-table/edit-student';
 export * from './hannah-table/add-student-for-hannah';
+export * from './hannah-student/edit-hannahstudent';
+export * from './hannah-student/edit-contact';
 // EXPORTS

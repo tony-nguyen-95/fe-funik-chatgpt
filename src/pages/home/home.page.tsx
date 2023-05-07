@@ -97,17 +97,20 @@ export const Home: React.FC<IHomeProps> = observer((props) => {
           </div>
           <div className="w-full p-5 md:grid grid-flow-col grid-cols-5 gap-5">
             <div className="col-start-1 col-end-5 flex justify-evenly items-center gap-2 flex-col md:flex-row">
-              <div
+              <a
                 className="bg-[#2d5095] p-2 rounded-md text-white w-full md:w-40 lg:w-52 xl:w-80 h-44
-						flex justify-evenly items-start flex-col px-6"
+						flex justify-evenly items-start flex-col px-6
+						hover:saturate-150 hover:scale-105 transition-all duration-300 ease-in-out"
+                href="/tools/studentByHannah"
               >
                 <BsPeopleFill size={40} />
                 <h3 className="text-md font-semibold font-sans">TỔNG SỐ HỌC VIÊN</h3>
                 <p className="text-3xl font-semibold font-sans">{TEMP_DATA.students.total}</p>
-              </div>
+              </a>
               <div
                 className="bg-[#2d5095] p-2 rounded-md text-white w-full md:w-40 lg:w-52 xl:w-80 h-44
-						flex justify-evenly items-start flex-col px-6"
+						flex justify-evenly items-start flex-col px-6
+						hover:saturate-150 hover:scale-105 transition-all duration-300 ease-in-out"
               >
                 <MdFileDownloadDone size={40} />
                 <h3 className="text-md font-semibold font-sans">ĐÃ HOÀN THÀNH</h3>
@@ -115,7 +118,8 @@ export const Home: React.FC<IHomeProps> = observer((props) => {
               </div>
               <div
                 className="bg-[#2d5095] p-2 rounded-md text-white w-full md:w-40 lg:w-52 xl:w-80 h-44
-						flex justify-evenly items-start flex-col px-6"
+						flex justify-evenly items-start flex-col px-6
+						hover:saturate-150 hover:scale-105 transition-all duration-300 ease-in-out"
               >
                 <BsPersonWorkspace size={40} />
                 <h3 className="text-md font-semibold font-sans">ĐANG HOẠT ĐỘNG</h3>
@@ -156,10 +160,8 @@ export const Home: React.FC<IHomeProps> = observer((props) => {
                 </div>
               </div>
               <div>
-                <div className="h-full md:h-[200px] xl:h-[175px] overflow-y-hidden flex justify-start items-center mt-8">
-                  <div className="w-full xl:w-[55%]">
-                    <DoughnutChart data={TEMP_DATA.students.progress} />
-                  </div>
+                <div className="w-full xl:w-[55%] mt-5">
+                  <DoughnutChart data={TEMP_DATA.students.progress} />
                 </div>
                 <p className="text-lg xl:text-md font-sans font-semibold mt-4 text-center w-full xl:w-2/3">
                   Tiến độ/Active

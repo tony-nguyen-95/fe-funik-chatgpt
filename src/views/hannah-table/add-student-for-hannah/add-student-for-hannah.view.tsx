@@ -108,7 +108,7 @@ export const AddStudentForHannah: React.FC<IAddStudentForHannahProps> = (props) 
                         }}
                       />
                     </td>
-                    <td className="px-4 py-2">{student.studentId}</td>
+                    <td className="px-4 py-2">{student.funixId}</td>
                     <td className="px-4 py-2">{student.name}</td>
                     <td
                       className={`px-4 py-2

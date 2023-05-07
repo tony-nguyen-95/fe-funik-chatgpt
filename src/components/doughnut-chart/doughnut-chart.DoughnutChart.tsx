@@ -24,5 +24,11 @@ export const DoughnutChart: React.FC<IDoughnutChartProps> = (props) => {
       },
     ],
   };
-  return <Doughnut data={chartData} options={{ plugins: { legend: { position: 'right', maxWidth: 230 } } }} />;
+  return (
+    <Doughnut
+      className="object-contain w-52 h-52"
+      data={chartData}
+      options={{ plugins: { legend: { position: 'right', maxWidth: 230 } }, aspectRatio: 2 }}
+    />
+  );
 };
