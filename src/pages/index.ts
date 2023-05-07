@@ -4,4 +4,5 @@ export * from './user';
 export * from './toolbox';
 export * from './student-table-by-hannah';
 export * from './interaction';
+export * from './chat-hannah';
 // EXPORTS

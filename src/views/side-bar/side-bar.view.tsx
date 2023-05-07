@@ -11,7 +11,7 @@ const prefixClassName = 'sidebar-view';
 
 export const SideBar: React.FC<ISideBarProps> = observer((props) => {
   const { t } = useTranslation();
-  const { active, isHidden } = props;
+  const { active, isHidden = false } = props;
 
   return (
     <nav
@@ -51,10 +51,10 @@ export const SideBar: React.FC<ISideBarProps> = observer((props) => {
           className={`flex gap-5 border-b-2 md:gap-0 md:border-0 md:flex-col justify-start md:justify-center items-center ${
             active === 'status' ? 'text-[#e9a074]' : 'text-[#41609f]'
           } mt-5 md:mt-0`}
-          href="#"
+          href="/chat"
         >
           <BsSpeedometer2 size={40} />
-          <span className="text-md md:text-xs">Status</span>
+          <span className="text-md md:text-xs">ChatGPT</span>
         </a>
       </div>
     </nav>
