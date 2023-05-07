@@ -1,1 +1,1 @@
-export * from './get-all-user.action';
+export * from './get-answer.action';
